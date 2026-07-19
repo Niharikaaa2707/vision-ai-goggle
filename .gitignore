@@ -1,0 +1,9 @@
+venv/
+venv-win/
+__pycache__/
+*.pyc
+*.pyo
+.env
+logs/
+*.pt
+models/piper/
