@@ -1,30 +1,25 @@
 // app.js - VISION Dashboard Frontend
-// Connects to backend via WebSocket and updates UI panels
 
 const WS_URL = "ws://localhost:8765";
 let socket = null;
 
-// Status indicator
 const statusIndicator = document.getElementById("status-indicator");
+const detectionList = document.getElementById("detection-list");
+const transcriptBox = document.getElementById("transcript-box");
+const alertBox = document.getElementById("alert-box");
 
 function connectWebSocket() {
     socket = new WebSocket(WS_URL);
 
     socket.onopen = () => {
-        console.log("[WS] Connected to VISION backend");
         statusIndicator.textContent = "System Online";
         statusIndicator.className = "status online";
     };
 
     socket.onclose = () => {
-        console.log("[WS] Disconnected. Retrying in 3 seconds...");
         statusIndicator.textContent = "System Offline";
         statusIndicator.className = "status offline";
         setTimeout(connectWebSocket, 3000);
-    };
-
-    socket.onerror = (err) => {
-        console.error("[WS] Error:", err);
     };
 
     socket.onmessage = (event) => {
@@ -34,11 +29,29 @@ function connectWebSocket() {
 }
 
 function handleEvent(data) {
-    // Will be expanded in future commits
-    console.log("[Event]", data);
+    if (data.type === "detection") {
+        updateDetections(data.detections);
+    } else if (data.type === "alert") {
+        updateAlert(data.level, data.message);
+    } else if (data.type === "transcript") {
+        transcriptBox.textContent = data.text;
+    }
 }
 
-// Start connection on page load
+function updateDetections(detections) {
+    detectionList.innerHTML = "";
+    detections.forEach(det => {
+        const li = document.createElement("li");
+        li.textContent = `${det.class_name} — ${det.direction}, ${det.distance}m`;
+        detectionList.appendChild(li);
+    });
+}
+
+function updateAlert(level, message) {
+    alertBox.textContent = message;
+    alertBox.className = level.toLowerCase();
+}
+
 window.onload = () => {
     connectWebSocket();
 };
