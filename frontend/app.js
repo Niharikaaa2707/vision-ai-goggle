@@ -1,4 +1,5 @@
 // app.js - VISION Dashboard Frontend
+// Connects to backend via WebSocket and updates UI panels in real time
 
 const WS_URL = "ws://localhost:8765";
 let socket = null;
@@ -7,6 +8,9 @@ const statusIndicator = document.getElementById("status-indicator");
 const detectionList = document.getElementById("detection-list");
 const transcriptBox = document.getElementById("transcript-box");
 const alertBox = document.getElementById("alert-box");
+const batteryStatus = document.getElementById("battery-status");
+const cpuStatus = document.getElementById("cpu-status");
+const sceneBox = document.getElementById("scene-box");
 
 function connectWebSocket() {
     socket = new WebSocket(WS_URL);
@@ -22,6 +26,10 @@ function connectWebSocket() {
         setTimeout(connectWebSocket, 3000);
     };
 
+    socket.onerror = (err) => {
+        console.error("[WS] Error:", err);
+    };
+
     socket.onmessage = (event) => {
         const data = JSON.parse(event.data);
         handleEvent(data);
@@ -35,6 +43,11 @@ function handleEvent(data) {
         updateAlert(data.level, data.message);
     } else if (data.type === "transcript") {
         transcriptBox.textContent = data.text;
+    } else if (data.type === "scene") {
+        sceneBox.textContent = data.description;
+    } else if (data.type === "status") {
+        batteryStatus.textContent = "Battery: " + data.battery + "%";
+        cpuStatus.textContent = "CPU: " + data.cpu + "%";
     }
 }
 
