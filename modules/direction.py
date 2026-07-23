@@ -1,5 +1,6 @@
 # modules/direction.py
-# Determines direction from bounding box X-center position.
+# Determines direction (left / centre / right) from a bounding box's
+# X-center position relative to frame width, per spec 5.6.
 
 import sys
 import os
@@ -24,3 +25,15 @@ def direction_phrase(direction):
         return "on your right"
     else:
         return "directly ahead"
+
+# ---------- Standalone test ----------
+if __name__ == "__main__":
+    test_frame_width = 640
+    test_boxes = {
+        "Left object":   (10, 100, 100, 200),
+        "Centre object": (280, 100, 360, 200),
+        "Right object":  (550, 100, 630, 200),
+    }
+    for label, box in test_boxes.items():
+        d = get_direction(box, test_frame_width)
+        print(f"{label}: box={box} -> direction={d} ({direction_phrase(d)})")
