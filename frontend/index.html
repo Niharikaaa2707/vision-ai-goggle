@@ -17,24 +17,32 @@
                 <h2>Live Feed</h2>
                 <div class="feed-placeholder">Camera feed will appear here</div>
             </div>
+
             <div class="panel" id="detection-panel">
                 <h2>Detections</h2>
+                <div id="detection-count" style="font-size:0.8rem; color:#8b949e; margin-bottom:8px;">No objects detected</div>
                 <ul id="detection-list"></ul>
             </div>
+
             <div class="panel" id="voice-panel">
                 <h2>Voice Input</h2>
                 <div id="transcript-box">Listening...</div>
+                <div id="command-status" style="font-size:0.8rem; color:#8b949e; margin-top:8px;">Mode: Normal Detection</div>
             </div>
+
             <div class="panel" id="alert-panel">
                 <h2>Alerts</h2>
                 <div id="alert-box">No alerts</div>
+                <div id="alert-history" style="font-size:0.8rem; color:#8b949e; margin-top:8px;"></div>
             </div>
+
             <div class="panel" id="status-panel">
                 <h2>System Status</h2>
                 <div id="battery-status">Battery: --</div>
                 <div id="cpu-status">CPU: --</div>
-                <div id="model-status">Models: Loading...</div>
+                <div id="model-status">Models: Loaded</div>
             </div>
+
             <div class="panel" id="scene-panel">
                 <h2>Scene Description</h2>
                 <div id="scene-box">Say "Describe" to get scene description</div>
