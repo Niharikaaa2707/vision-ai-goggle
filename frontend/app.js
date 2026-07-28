@@ -1,13 +1,17 @@
 // app.js - VISION Dashboard Frontend
-// Connects to backend via WebSocket and updates UI panels in real time
+// Added voice transcript live update and command mode display
 
 const WS_URL = "ws://localhost:8765";
 let socket = null;
+let alertHistory = [];
 
 const statusIndicator = document.getElementById("status-indicator");
 const detectionList = document.getElementById("detection-list");
+const detectionCount = document.getElementById("detection-count");
 const transcriptBox = document.getElementById("transcript-box");
+const commandStatus = document.getElementById("command-status");
 const alertBox = document.getElementById("alert-box");
+const alertHistoryBox = document.getElementById("alert-history");
 const batteryStatus = document.getElementById("battery-status");
 const cpuStatus = document.getElementById("cpu-status");
 const sceneBox = document.getElementById("scene-box");
@@ -42,7 +46,9 @@ function handleEvent(data) {
     } else if (data.type === "alert") {
         updateAlert(data.level, data.message);
     } else if (data.type === "transcript") {
-        transcriptBox.textContent = data.text;
+        transcriptBox.textContent = `"${data.text}"`;
+    } else if (data.type === "command") {
+        commandStatus.textContent = `Mode: ${data.mode}`;
     } else if (data.type === "scene") {
         sceneBox.textContent = data.description;
     } else if (data.type === "status") {
@@ -53,6 +59,11 @@ function handleEvent(data) {
 
 function updateDetections(detections) {
     detectionList.innerHTML = "";
+    if (detections.length === 0) {
+        detectionCount.textContent = "No objects detected";
+        return;
+    }
+    detectionCount.textContent = `${detections.length} object(s) detected`;
     detections.forEach(det => {
         const li = document.createElement("li");
         li.textContent = `${det.class_name} — ${det.direction}, ${det.distance}m`;
@@ -63,6 +74,12 @@ function updateDetections(detections) {
 function updateAlert(level, message) {
     alertBox.textContent = message;
     alertBox.className = level.toLowerCase();
+
+    // Add to history
+    const time = new Date().toLocaleTimeString();
+    alertHistory.unshift(`[${time}] ${message}`);
+    if (alertHistory.length > 5) alertHistory.pop();
+    alertHistoryBox.textContent = alertHistory.join("\n");
 }
 
 window.onload = () => {
