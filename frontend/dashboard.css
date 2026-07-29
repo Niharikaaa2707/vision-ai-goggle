@@ -81,7 +81,6 @@ header h1 {
 #detection-list {
     list-style: none;
     font-size: 0.88rem;
-    color: #e6edf3;
 }
 
 #detection-list li {
@@ -90,34 +89,66 @@ header h1 {
     color: #3fb950;
 }
 
+#detection-count {
+    font-size: 0.8rem;
+    color: #8b949e;
+    margin-bottom: 8px;
+}
+
 #transcript-box {
     font-size: 0.9rem;
-    color: #8b949e;
+    color: #e6edf3;
     font-style: italic;
 }
 
-#alert-box {
-    font-size: 0.9rem;
+#command-status {
+    font-size: 0.8rem;
     color: #8b949e;
+    margin-top: 8px;
+}
+
+#alert-box {
+    font-size: 0.95rem;
+    font-weight: bold;
+    padding: 8px;
+    border-radius: 6px;
 }
 
 #alert-box.critical {
+    background-color: #3d1f1f;
     color: #f85149;
-    font-weight: bold;
 }
 
 #alert-box.warning {
+    background-color: #3d2f1f;
     color: #e3b341;
 }
 
 #alert-box.caution {
+    background-color: #1f2d3d;
     color: #58a6ff;
+}
+
+#alert-box.none, #alert-box {
+    color: #8b949e;
+}
+
+#alert-history {
+    font-size: 0.78rem;
+    color: #8b949e;
+    margin-top: 8px;
+    white-space: pre-line;
+    line-height: 1.6;
 }
 
 #battery-status, #cpu-status, #model-status {
     font-size: 0.88rem;
     color: #8b949e;
     margin-bottom: 8px;
+}
+
+#battery-status.low {
+    color: #f85149;
 }
 
 #scene-box {
