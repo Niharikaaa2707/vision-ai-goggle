@@ -1,46 +1,116 @@
-# \# VISION — AI Smart Goggle for the Visually Impaired
+\# VISION — AI Smart Goggle for the Visually Impaired
 
-# 
 
-# A real-time AI-powered assistive system that helps visually impaired individuals navigate their surroundings using computer vision, speech recognition, and text-to-speech — running fully offline on a laptop.
 
-# 
+A real-time AI-powered assistive system that helps visually impaired individuals navigate their surroundings using computer vision, speech recognition, and text-to-speech — running fully offline on a laptop.
 
-# \## Features
 
-# \- Real-time object detection (YOLOv8s)
 
-# \- Distance and direction estimation
+\## Features
 
-# \- Offline speech recognition (Whisper)
+\- Real-time object detection with YOLOv8s (up to 25 FPS)
 
-# \- Natural language scene description (moondream2)
+\- Distance and direction estimation (left/centre/right)
 
-# \- Text-to-speech narration (Piper TTS)
+\- Offline speech recognition using faster-whisper
 
-# \- Voice-commanded object search
+\- Natural language scene description using moondream2
 
-# \- Proximity alerts
+\- Text-to-speech narration using Piper TTS
 
-# \- Web dashboard for monitoring
+\- Voice-commanded object search ("Find bottle")
 
-# 
+\- Proximity alerts with audio feedback
 
-# \## Team
+\- Battery and CPU monitoring
 
-# \- Niharika
+\- Web dashboard for real-time monitoring
 
-# \- Prakriti 
+\- Crash recovery and camera reconnect handling
 
-# 
 
-# \## Setup
 
-# ```bash
+\## Team
 
-# pip install -r requirements.txt
+\- Prakriti — AI/ML Backend Pipeline
 
-# python main.py
+\- Niharika — Frontend Dashboard \& System Integration
 
-# ```
+
+
+\## Tech Stack
+
+\- Python 3.12
+
+\- YOLOv8s (Ultralytics)
+
+\- faster-whisper (OpenAI Whisper)
+
+\- Piper TTS (Coqui)
+
+\- moondream2 (Vision Language Model)
+
+\- OpenCV
+
+\- FastAPI + WebSockets
+
+
+
+\## Setup
+
+
+
+```bash
+
+\# Clone the repo
+
+git clone https://github.com/Niharikaaa2707/vision-ai-goggle.git
+
+cd vision-ai-goggle
+
+
+
+\# Create virtual environment
+
+python -m venv venv
+
+venv\\Scripts\\activate  # Windows
+
+
+
+\# Install dependencies
+
+pip install -r requirements.txt
+
+
+
+\# Run
+
+python main.py
+
+```
+
+
+
+\## Voice Commands
+
+| Command | Action |
+
+|---|---|
+
+| "Find \[object]" | Search for specific object |
+
+| "Describe" | Full scene description |
+
+| "Distance" | Distance to nearest object |
+
+| "What is on my left/right" | Directional awareness |
+
+| "Is the path clear" | Safety check |
+
+| "Stop" | Return to normal mode |
+
+| "Battery" | Battery status |
+
+| "Help" | List all commands |
 
