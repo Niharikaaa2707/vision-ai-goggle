@@ -1,0 +1,13 @@
+opencv-python
+ultralytics
+faster-whisper
+piper-tts
+sounddevice
+pyaudio
+silero-vad
+moondream
+psutil
+rapidfuzz
+torch
+numpy
+Pillow
