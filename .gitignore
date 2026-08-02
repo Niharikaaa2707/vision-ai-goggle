@@ -3,7 +3,10 @@ venv-win/
 __pycache__/
 *.pyc
 *.pyo
-.env
+models/*.pt
+models/*.onnx
+models/*.bin
+models/*.mf
 logs/
-*.pt
-models/piper/
+.env
+*.egg-info/
