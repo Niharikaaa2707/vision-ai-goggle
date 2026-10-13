@@ -114,3 +114,10 @@ python main.py
 
 | "Help" | List all commands |
 
+
+## Project Demo
+
+### Working Screenshot
+
+![Vision AI Live Feed](images/vision_live%20feed.png)
+
