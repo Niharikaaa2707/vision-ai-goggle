@@ -158,7 +158,7 @@ The screenshot shows the live camera feed during operation.
 
 A video demonstration of VISION is available in this repository, showcasing the system's working pipeline and its real-time capabilities.
 
-<!-- Add a link to your uploaded video here. -->
+https://youtu.be/CMdxbIUNjDg
 
 ## Team
 
